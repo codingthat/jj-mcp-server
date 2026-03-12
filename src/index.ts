@@ -117,11 +117,12 @@ server.tool(
   },
   async ({ parents, repoPath, cwd }) => {
     const args = ["new"];
-    if (parents) {
-      args.push("--parents", parents);
-    }
     if (repoPath) {
       args.push("--repository", repoPath);
+    }
+    if (parents) {
+      // Parents are positional args (REVSETS), not --parents flag
+      args.push(...parents.split(",").map((p) => p.trim()));
     }
     const output = await runJJCommand(args, cwd);
     return {
