@@ -431,7 +431,7 @@ server.tool(
     stat: z.boolean().optional(),
   },
   async ({ from, to, repoPath, cwd, context, stat }) => {
-    const args = ["diff"];
+    const args = ["diff", "--git"];
     if (from) {
       args.push("-f", from);
     }
@@ -819,7 +819,7 @@ server.tool(
     context: z.number().int().nonnegative().optional(),
   },
   async ({ revision, repoPath, cwd, context }) => {
-    const args = ["show"];
+    const args = ["show", "--git"];
     if (revision) {
       args.push("-r", revision);
     }
@@ -918,7 +918,7 @@ server.tool(
     context: z.number().int().nonnegative().optional(),
   },
   async ({ from, to, repoPath, cwd, context }) => {
-    const args = ["interdiff", "-f", from, "-t", to];
+    const args = ["interdiff", "--git", "-f", from, "-t", to];
     if (repoPath) {
       args.push("--repository", repoPath);
     }
@@ -1278,7 +1278,7 @@ server.tool(
     context: z.number().int().nonnegative().optional(),
   },
   async ({ from, to, repoPath, cwd, context }) => {
-    const args = ["operation", "diff"];
+    const args = ["operation", "diff", "--git"];
     if (from) {
       args.push("-f", from);
     }
